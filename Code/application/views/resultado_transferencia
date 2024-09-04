@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resultado de la Transferencia</title>
+</head>
+<body>
+    <h1><?php echo $mensaje; ?></h1>
+    <a href="<?php echo site_url('usuarios/transferir'); ?>">Realizar otra transferencia</a>
+</body>
+</html>
