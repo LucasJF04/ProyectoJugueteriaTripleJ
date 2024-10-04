@@ -157,395 +157,7 @@
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <!-- Brand Logo -->
-    <a href="../index3.html" class="brand-link">
-    <img src="<?= base_url('adminlte/dist/img/AdminLTELogo.png') ?>" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">JugueteriaTripleJ</span>
-    </a>
-
-    <!-- Sidebar -->
-    <div class="sidebar">
-      <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-          <img src="<?= base_url('adminlte/dist/img/user2-160x160.jpg') ?>" class="img-circle elevation-2" alt="User Image">
-        </div>
-        <div class="info">
-        <a href="#" class="d-block">
-        <?php echo $this->session->userdata('nombre') . ' ' . $this->session->userdata('apellido_Paterno'); ?>
-        </a>
-        </div>
-      </div>
-
-      <!-- SidebarSearch Form -->
-      <div class="form-inline">
-        <div class="input-group" data-widget="sidebar-search">
-          <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-          <div class="input-group-append">
-            <button class="btn btn-sidebar">
-              <i class="fas fa-search fa-fw"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Sidebar Menu -->
-      <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-          <li class="nav-item">
-            <a href="dashboard" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Panel
-                
-              </p>
-            </a>
-            
-          </li>
-          <li class="nav-item">
-            <a href="catalogo" class="nav-link">
-              <i class="nav-icon fas fa-book"></i>
-              <p>
-                Catálogo
-               
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="anadir" class="nav-link active">
-              <i class="fas fa-plus"></i>
-              <p>
-                Añadir Productos
-               
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="clientes" class="nav-link">
-              <i class="nav-icon fas fa-users"></i>
-              <p>
-                Clientes 
-                
-              </p>
-            </a>
-           
-          </li>
-          <li class="nav-item">
-            <a href="carrito" class="nav-link">
-              <i class="nav-icon fas fa-shopping-cart"></i>
-              <p>
-                Carrito
-              </p>
-            </a>
-            
-          </li>
-          <li class="nav-item">
-            <a href="carrito" class="nav-link">
-              <i class="nav-icon fas fa-file-alt"></i>
-              <p>
-                Reportes
-              </p>
-            </a>
-            
-          </li>
-          
-          
-          <li class="nav-header">EXAMPLES</li>
-          <li class="nav-item">
-            <a href="calendar.html" class="nav-link">
-              <i class="nav-icon far fa-calendar-alt"></i>
-              <p>
-                Calendar
-                <span class="badge badge-info right">2</span>
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="gallery.html" class="nav-link">
-              <i class="nav-icon far fa-image"></i>
-              <p>
-                Gallery
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="kanban.html" class="nav-link">
-              <i class="nav-icon fas fa-columns"></i>
-              <p>
-                Kanban Board
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon far fa-envelope"></i>
-              <p>
-                Mailbox
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="mailbox/mailbox.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Inbox</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="mailbox/compose.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Compose</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="mailbox/read-mail.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Read</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-book"></i>
-              <p>
-                Pages
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="examples/invoice.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Invoice</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="examples/profile.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Profile</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="examples/e-commerce.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>E-commerce</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="examples/projects.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Projects</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="examples/project-add.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Project Add</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="examples/project-edit.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Project Edit</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="examples/project-detail.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Project Detail</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="examples/contacts.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Contacts</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="examples/faq.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>FAQ</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="examples/contact-us.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Contact us</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon far fa-plus-square"></i>
-              <p>
-                Extras
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>
-                    Login & Register v1
-                    <i class="fas fa-angle-left right"></i>
-                  </p>
-                </a>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="examples/login.html" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Login v1</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="examples/register.html" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Register v1</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="examples/forgot-password.html" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Forgot Password v1</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="examples/recover-password.html" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Recover Password v1</p>
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>
-                    Login & Register v2
-                    <i class="fas fa-angle-left right"></i>
-                  </p>
-                </a>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="examples/login-v2.html" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Login v2</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="examples/register-v2.html" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Register v2</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="examples/forgot-password-v2.html" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Forgot Password v2</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="examples/recover-password-v2.html" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Recover Password v2</p>
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <a href="examples/lockscreen.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Lockscreen</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="examples/legacy-user-menu.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Legacy User Menu</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="examples/language-menu.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Language Menu</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="examples/404.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Error 404</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="examples/500.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Error 500</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="examples/pace.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Pace</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="examples/blank.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Blank Page</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="../starter.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Starter Page</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-search"></i>
-              <p>
-                Search
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="search/simple.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Simple Search</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="search/enhanced.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Enhanced</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a href="logout" class="nav-link">
-              <i class="nav-icon fas fa-sign-out-alt"></i>
-              <p>
-                Salir
-              </p>
-            </a>
-            
-          </li>
-        </ul>
-      </nav>
-      <!-- /.sidebar-menu -->
-    </div>
-    <!-- /.sidebar -->
-  </aside>
+ 
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -554,7 +166,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>AGREGAR PRODUCTOS</h1>
+            
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -621,40 +233,172 @@
        
         <div class="row">
   <!-- Fila 1 -->
-  <div class="col-md-3 col-sm-6 col-12">
-  <div class="card">
-  <div class="card-body">
-    <form action="<?= base_url('index.php/usuarios/agregar'); ?>" method="POST" enctype="multipart/form-data">
-      <div class="form-group">
-        <label for="imagenProducto">Imagen del Producto:</label>
-        <input type="file" class="form-control-file" id="imagenProducto" name="imagenProducto" accept="image/*">
+  <div class="col-md-12 col-sm-6 col-12">
+    <div class="card">
+      <div class="card-body">
+        <h1>Gestion de Productos</h1>
+        <!-- Menús para Añadir y Editar Productos -->
+        <div class="row mb-4">
+          <div class="col-md-6">
+            <!-- Botón para abrir el modal de Añadir Producto -->
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalAgregarProducto">
+              <i class="fas fa-plus"></i> Añadir Producto
+            </button>
+          </div>
+          <div class="col-md-6">
+            <!-- Botón para abrir el modal de Editar Producto -->
+            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editarModal">
+                Editar Producto
+            </button>
+          </div>
+        </div>
+
+        <!-- Modal para Añadir Producto -->
+        <div class="modal fade" id="modalAgregarProducto" tabindex="-1" aria-labelledby="modalAgregarProductoLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="modalAgregarProductoLabel">Añadir Producto</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form action="<?= base_url('index.php/productos/agregar'); ?>" method="POST" enctype="multipart/form-data">
+                  <div class="form-group">
+                    <label for="imagenProducto">Imagen del Producto:</label>
+                    <input type="file" class="form-control-file" id="imagenProducto" name="imagenProducto" accept="image/*">
+                  </div>
+                  <div class="form-group">
+                    <label for="nombreProducto">Nombre del Producto:</label>
+                    <input type="text" class="form-control" id="nombreProducto" name="nombreProducto" placeholder="Ingrese el nombre" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="descripcionProducto">Descripción:</label>
+                    <input type="text" class="form-control" id="descripcionProducto" name="descripcionProducto" placeholder="Ingrese la descripción">
+                  </div>
+                  <div class="form-group">
+                    <label for="precioProducto">Precio:</label>
+                    <input type="number" step="0.01" class="form-control" id="precioProducto" name="precioProducto" placeholder="Ingrese el precio" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="stockProducto">Stock:</label>
+                    <input type="number" class="form-control" id="stockProducto" name="stockProducto" placeholder="Ingrese el stock disponible" required>
+                  </div>
+                  <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-plus"></i> Agregar
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal para Editar Producto -->
+        <div class="modal fade" id="editarModal" tabindex="-1" role="dialog" aria-labelledby="editarModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editarModalLabel">Editar Producto</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
-      <div class="form-group">
-        <label for="nombreProducto">Nombre del Producto:</label>
-        <input type="text" class="form-control" id="nombreProducto" name="nombreProducto" placeholder="Ingrese el nombre" required>
+      <div class="modal-body">
+        <!-- Campo de búsqueda en el modal -->
+        <input type="text" id="buscarProductoEditar" class="form-control mb-3" placeholder="Buscar por nombre o descripción">
+
+        <!-- Lista de productos que se mostrarán y se filtrarán -->
+        <div id="listaProductosEditar" style="max-height: 300px; overflow-y: auto;"></div>
+
+        <!-- Formulario para editar el producto seleccionado -->
+        <form id="formEditarProducto" style="display: none;" method="POST" action="<?= base_url('index.php/productos/editar'); ?>">
+          <input type="hidden" id="productoId" name="productoId">
+          <div class="form-group">
+            <label for="nombreProductoEditarForm">Nombre del Producto:</label>
+            <input type="text" class="form-control" id="nombreProductoEditarForm" name="nombreProducto" required>
+          </div>
+          <div class="form-group">
+            <label for="descripcionProductoEditarForm">Descripción:</label>
+            <input type="text" class="form-control" id="descripcionProductoEditarForm" name="descripcionProducto">
+          </div>
+          <div class="form-group">
+            <label for="precioProductoEditarForm">Precio:</label>
+            <input type="number" step="0.01" class="form-control" id="precioProductoEditarForm" name="precioProducto" required>
+          </div>
+          <div class="form-group">
+            <label for="stockProductoEditarForm">Stock:</label>
+            <input type="number" class="form-control" id="stockProductoEditarForm" name="stockProducto" required>
+          </div>
+          <button type="submit" class="btn btn-success">Guardar Cambios</button>
+        </form>
       </div>
-      <div class="form-group">
-        <label for="descripcionProducto">Descripción:</label>
-        <input type="text" class="form-control" id="descripcionProducto" name="descripcionProducto" placeholder="Ingrese la descripción">
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
       </div>
-      <div class="form-group">
-        <label for="precioProducto">Precio:</label>
-        <input type="number" step="0.01" class="form-control" id="precioProducto" name="precioProducto" placeholder="Ingrese el precio" required>
-      </div>
-      <div class="form-group">
-        <label for="stockProducto">Stock:</label>
-        <input type="number" class="form-control" id="stockProducto" name="stockProducto" placeholder="Ingrese el stock disponible" required>
-      </div>
-      <button type="submit" class="btn btn-primary">
-        <i class="fas fa-plus"></i> Agregar
-      </button>
-    </form>
+    </div>
   </div>
 </div>
 
-</div>
+<script>
+  // Buscar producto por nombre o descripción
+  document.getElementById('buscarProductoEditar').addEventListener('keyup', function() {
+    var criterio = this.value;
 
-</div>
+    // Realizar petición AJAX para buscar productos
+    $.ajax({
+      url: '<?= base_url("index.php/productos/buscar"); ?>',
+      method: 'POST',
+      data: { criterio: criterio },
+      success: function(response) {
+        var productos = JSON.parse(response);
+        var lista = $('#listaProductosEditar');
+        lista.empty();
+        
+        if (productos.length > 0) {
+          productos.forEach(function(producto) {
+            lista.append(`
+              <div class="producto-item-editar" data-id="${producto.id}">
+                <h5 class="nombreProductoEditar">${producto.nombre}</h5>
+                <p class="descripcionProductoEditar">${producto.descripcion}</p>
+                <button type="button" class="btn btn-primary seleccionarProducto" data-id="${producto.id}">
+                  Editar este producto
+                </button>
+                <hr>
+              </div>
+            `);
+          });
+        } else {
+          lista.append('<p>No se encontraron productos.</p>');
+        }
+      }
+    });
+  });
+
+  // Manejar la selección de producto
+  $(document).on('click', '.seleccionarProducto', function() {
+    var productoId = $(this).data('id');
+
+    // Rellenar el formulario con los datos del producto seleccionado (puedes obtener los datos por AJAX si es necesario)
+    $.ajax({
+      url: '<?= base_url("index.php/productos/detalle"); ?>/' + productoId,
+      method: 'GET',
+      success: function(response) {
+        var producto = JSON.parse(response);
+
+        $('#productoId').val(producto.id);
+        $('#nombreProductoEditarForm').val(producto.nombre);
+        $('#descripcionProductoEditarForm').val(producto.descripcion);
+        $('#precioProductoEditarForm').val(producto.precio);
+        $('#stockProductoEditarForm').val(producto.stock);
+
+        // Mostrar el formulario
+        $('#formEditarProducto').show();
+      }
+    });
+  });
+</script>
+
 
 <!-- Modal -->
 <div class="modal fade" id="transferModal" tabindex="-1" role="dialog" aria-labelledby="transferModalLabel" aria-hidden="true">

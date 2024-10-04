@@ -25,10 +25,15 @@
             <span>Ingrese sus datos</span>
             <div id="errores"></div> <!-- Aquí se mostrarán los mensajes de error -->
             <input type="text" name="nombre" id="nombre" placeholder="Escribe tu nombre" required>
+            <span class="error" id="error-nombre"></span>
             <input type="text" name="apellido_Paterno" id="apellido_Paterno" placeholder="Escribe tu apellido paterno" required>
+            <span class="error" id="error-apellido_Paterno"></span>
             <input type="text" name="apellido_Materno" id="apellido_Materno" placeholder="Escribe tu apellido materno" required>
+            <span class="error" id="error-apellido_Materno"></span>
             <input type="email" name="email" id="email" placeholder="Escribe tu email" required>
+             <span class="error" id="error-email"></span>
             <input type="password" name="password" id="password" placeholder="Escribe tu contraseña" required>
+            <span class="error" id="error-password"></span>
             <button type="submit" class="btn btn-success">Registrar</button>
            
 
@@ -37,36 +42,44 @@
         <!-- Aquí se mostrará el mensaje de éxito -->
     
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-document.getElementById('formRegistro').addEventListener('submit', function(e) {
-    e.preventDefault(); // Prevenir el comportamiento por defecto del formulario
+    $(document).ready(function() {
+        $('#formRegistro').submit(function(e) {
+            e.preventDefault(); // Prevenir el envío normal del formulario
 
-    let formData = new FormData(this);
+            $.ajax({
+                url: '<?= site_url('usuarios/registrar'); ?>',
+                type: 'POST',
+                data: $(this).serialize(),
+                dataType: 'json',
+                success: function(response) {
+                    // Ocultar errores previos
+                    $('.error').text('').hide();
 
-    fetch('<?php echo site_url("usuarios/registrar"); ?>', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-        // Limpia los mensajes de error anteriores
-        document.getElementById('errores').innerHTML = '';
-        
-        if (data.success) {
-            document.getElementById('mensaje').innerHTML = '<div class="alert alert-success">¡Cuenta creada exitosamente!</div>';
-            // Limpia el formulario
-            document.getElementById('formRegistro').reset();
-        } else {
-            let errorMessages = '';
-            for (let campo in data.errores) {
-                errorMessages += '<div class="alert alert-danger">' + data.errores[campo] + '</div>';
-            }
-            document.getElementById('errores').innerHTML = errorMessages;
-        }
-    })
-    .catch(error => console.error('Error:', error));
-});
+                    if (response.success) {
+                        $('#mensaje').text('Registro exitoso').show();
+
+                        // Limpiar los campos del formulario solo si el registro fue exitoso
+                        $('#formRegistro')[0].reset();
+
+                        // Aquí puedes redirigir o realizar otra acción si es necesario
+                    } else {
+                        // Mostrar los errores de validación en los flotantes
+                        for (const [campo, mensaje] of Object.entries(response.errores)) {
+                            $('#error-' + campo).text(mensaje).show(); // Mostrar el mensaje en el flotante
+                        }
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error en la solicitud:', error);
+                }
+            });
+        });
+    });
 </script>
+
+
 
         <div class="form-container sign-in">
             <?php echo form_open_multipart("usuarios/validarusuario"); ?>

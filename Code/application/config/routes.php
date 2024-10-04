@@ -51,9 +51,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 
 $route['default_controller'] = 'usuarios';
+
+
 $route['usuarios'] = 'usuarios/listar_usuarios';  // Controlador por defecto
 $route['404_override'] = '';  // Controlador para manejar 404 errores
 $route['translate_uri_dashes'] = FALSE;  // Permite usar guiones en lugar de guiones bajos
 
+
+$route['productos'] = 'productos/index';  // Ruta principal para listar productos
+$route['productos/agregar'] = 'productos/agregar';  // Ruta para agregar productos
+$route['productos/editar/(:num)'] = 'productos/editar/$1';  // Ruta para editar productos por ID
+$route['productos/eliminar/(:num)'] = 'productos/eliminar/$1'; 
 // Rutas personalizadas para el controlador Usuarios
 
