@@ -39,8 +39,44 @@ public function actualizarProducto($id, $datos) {
 
 
 
+//modificar productos
+ public function obtenerProducto($id_producto) {
+    $this->db->where('id_producto', $id_producto);
+    $query = $this->db->get('producto');
+    return $query->row_array(); 
+}
 
 
+public function modificarProducto($id_producto, $nombre, $descripcion, $precio, $stock, $imagen) {
+    $data = [
+        'nombre' => $nombre,
+        'descripcion' => $descripcion,
+        'precio' => $precio,
+        'stock' => $stock,
+        'imagen' => $imagen
+    ];
+
+    $this->db->where('id_producto', $id_producto);
+    $this->db->update('producto', $data);
+}
+
+// Actualizar producto sin modificar la imagen
+public function modificarProductoSinImagen($id_producto, $nombre, $descripcion, $precio, $stock) {
+    $data = [
+        'nombre' => $nombre,
+        'descripcion' => $descripcion,
+        'precio' => $precio,
+        'stock' => $stock
+    ];
+
+    $this->db->where('id_producto', $id_producto);
+    $this->db->update('producto', $data);
+}
+public function eliminarProducto($id_producto) {
+    // Eliminar el producto por su ID
+    $this->db->where('id_producto', $id_producto);
+    $this->db->delete('producto');
+}
 
 
 }

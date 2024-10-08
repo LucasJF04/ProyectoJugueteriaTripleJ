@@ -53,7 +53,7 @@ class Productos extends CI_Controller {
     
     {
         $this->load->view('inc/vistaslte/head');
-        $this->load->view('anadirProducto');
+        $this->load->view('gestionProductos');
 
         $this->load->view('inc/vistaslte/footer');
         $this->load->view('inc/vistaslte/menu');
@@ -99,7 +99,7 @@ class Productos extends CI_Controller {
             );
 
             $this->productos_model->agregarProducto($datos_producto);
-            redirect('productos/catalogo');
+            redirect('productos/gestion');
         } else {
             echo $this->upload->display_errors();
         }
@@ -184,6 +184,77 @@ class Productos extends CI_Controller {
 // En tu controlador productos.php
 
 
+
+public function getProducto() {
+    $id_producto = $this->input->get('id_producto');
+    if ($id_producto) {
+        $producto = $this->productos_model->obtenerProducto($id_producto);
+        if ($producto) {
+            echo json_encode($producto);
+        } else {
+            echo json_encode(['error' => 'Producto no encontrado']);
+        }
+    } else {
+        echo json_encode(['error' => 'ID de producto no proporcionado']);
+    }
+}
+
+
+// Método para actualizar los datos de un producto sin manejar la imagen actual
+public function modificarbd() {
+    $id_producto = $this->input->post('id_producto');
+    
+    // Recogemos los datos del formulario
+    $nombre = $this->input->post('nombre');
+    $descripcion = $this->input->post('descripcion');
+    $precio = $this->input->post('precio');
+    $stock = $this->input->post('stock');
+
+    // Verificar si se subió una nueva imagen
+    if (!empty($_FILES['imagen']['name'])) {
+        $config['upload_path'] = './uploads/'; // Ruta donde se guardará la imagen
+        $config['allowed_types'] = 'jpg|jpeg|png|gif';
+        $config['file_name'] = time() . '_' . $_FILES['imagen']['name']; // Generar un nombre único para la imagen
+
+        $this->load->library('upload', $config);
+
+        if ($this->upload->do_upload('imagen')) {
+            $uploadData = $this->upload->data();
+            $imagen = $uploadData['file_name']; // Nombre de la nueva imagen
+        } else {
+            echo json_encode(['error' => $this->upload->display_errors()]); // Enviar errores si hay problemas con la carga
+            return;
+        }
+
+        // Actualizar los datos del producto con la nueva imagen
+        $this->productos_model->modificarProducto($id_producto, $nombre, $descripcion, $precio, $stock, $imagen);
+    } else {
+        // Si no se subió nueva imagen, solo actualizar los otros datos
+        $this->productos_model->modificarProductoSinImagen($id_producto, $nombre, $descripcion, $precio, $stock);
+    }
+
+    $this->session->set_flashdata('success', 'Producto actualizado correctamente');
+    
+    redirect('productos/gestion');
+}
+public function eliminar($id_producto) {
+    // Verificamos si el producto existe antes de eliminar
+    $producto = $this->productos_model->obtenerProducto($id_producto);
+
+    if ($producto) {
+        // Llamamos al método del modelo para eliminar el producto
+        $this->productos_model->eliminarProducto($id_producto);
+        
+        // Establecemos un mensaje de éxito en la sesión
+        $this->session->set_flashdata('success', 'Producto eliminado correctamente');
+    } else {
+        // Si el producto no existe, mostramos un error
+        $this->session->set_flashdata('error', 'Producto no encontrado');
+    }
+
+    // Redirigimos a la lista de productos
+    redirect('productos/gestion');
+}
 
     
 }

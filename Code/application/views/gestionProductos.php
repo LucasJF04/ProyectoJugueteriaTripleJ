@@ -47,7 +47,13 @@
           <div class="col-12">
             <div class="card">
               <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+              <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalAgregarProducto">
+                <i class="fas fa-plus"></i> Añadir Producto
+              </button>
+            </div>
                 <table id="example1" class="table table-bordered table-hover">
+                    
                   <thead>
                     <tr>
                     <th>N°</th>
@@ -76,7 +82,8 @@
                       
                       <td>
                         <a href="#" class="btn btn-warning btn-sm btnEditar" data-toggle="modal" data-target="#modalEditarProducto" data-id="<?= $producto->id_producto; ?>">Editar</a>
-                        <a href="<?= base_url('index.php/productos/eliminar/' . $producto->id_producto); ?>" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de que deseas eliminar este producto?');">Eliminar</a>
+                       <a href="<?= site_url('productos/eliminar/' . $producto->id_producto); ?>" class="btn btn-danger btn-sm btnEliminar"
+                   onclick="return confirm('¿Estás seguro de que deseas eliminar este producto?');">Eliminar</a>
                       </td>
                     </tr>
                     <?php endforeach; ?>
@@ -98,86 +105,109 @@
 
             <!-- Modal de edición -->
             <div id="modalEditarProducto" class="modal fade" tabindex="-1" role="dialog">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title">Editar Producto</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    <?= form_open("productos/modificarbd", ['id' => 'formEditarProducto']); ?>
-                      <input type="hidden" id="idProducto" name="id_producto">
-                      <div class="form-group">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Editar Producto</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <?= form_open_multipart("productos/modificarbd", ['id' => 'formEditarProducto']); ?> <!-- 'form_open_multipart' para permitir carga de archivos -->
+                    <input type="hidden" id="idProducto" name="id_producto">
+                    
+                    <!-- Campo para el nombre -->
+                    <div class="form-group">
                         <label for="nombreProducto">Nombre</label>
                         <input type="text" class="form-control" id="nombreProducto" name="nombre" value="">
-                      </div>
-                      <div class="form-group">
+                    </div>
+
+                    <!-- Campo para la descripción -->
+                    <div class="form-group">
                         <label for="descripcionProducto">Descripción</label>
                         <input type="text" class="form-control" id="descripcionProducto" name="descripcion" value="">
-                      </div>
-                      <div class="form-group">
+                    </div>
+
+                    <!-- Campo para el precio -->
+                    <div class="form-group">
                         <label for="precioProducto">Precio</label>
                         <input type="text" class="form-control" id="precioProducto" name="precio" value="">
-                      </div>
-                      <div class="form-group">
+                    </div>
+
+                    <!-- Campo para el stock -->
+                    <div class="form-group">
                         <label for="stockProducto">Stock</label>
                         <input type="number" class="form-control" id="stockProducto" name="stock" value="">
-                      </div>
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                      <button type="submit" class="btn btn-primary" id="btnGuardar">Guardar</button>
-                    <?= form_close(); ?>
-                  </div>
-                </div>
-              </div>
-            </div>
+                    </div>
 
-            <!-- Agregar los scripts al final de la vista, antes del cierre de body -->
-            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Asegúrate de tener jQuery -->
+                    <!-- Campo para mostrar la imagen actual -->
+                    
+
+                    <!-- Campo para cargar una nueva imagen -->
+                    <div class="form-group">
+                        <label for="imagenNueva">Nueva Imagen (opcional)</label>
+                        <input type="file" class="form-control-file" id="imagenNueva" name="imagen">
+                    </div>
+
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary" id="btnGuardar">Guardar</button>
+                <?= form_close(); ?>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Agregar los scripts al final de la vista, antes del cierre de body -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Asegúrate de tener jQuery -->
             <script>
-              $(document).ready(function() {
+            $(document).ready(function() {
                 $('.btnEditar').on('click', function() {
-                  var productId = $(this).data('id'); // Capturar el ID del producto
-                  $.ajax({
-                    url: '<?= site_url("productos/getProducto"); ?>', // URL del controlador para obtener datos del producto
-                    type: 'GET',
-                    data: { id_producto: productId }, // Pasar el ID del producto
-                    dataType: 'json',
-                    success: function(data) {
-                      if (!data.error) {
-                        // Rellenar los campos del formulario con los datos del producto
-                        $('#idProducto').val(data.id_producto);
-                        $('#nombreProducto').val(data.nombre);
-                        $('#descripcionProducto').val(data.descripcion);
-                        $('#precioProducto').val(data.precio);
-                        $('#stockProducto').val(data.stock);
-                      } else {
-                        console.error(data.error);
-                      }
-                    }
-                  });
+                    var productId = $(this).data('id'); // Capturar el ID del producto
+                    $.ajax({
+                        url: '<?= site_url("productos/getProducto"); ?>', // URL del controlador para obtener datos del producto
+                        type: 'GET',
+                        data: { id_producto: productId }, // Pasar el ID del producto
+                        dataType: 'json',
+                        success: function(data) {
+                            if (!data.error) {
+                                // Rellenar los campos del formulario con los datos del producto
+                                $('#idProducto').val(data.id_producto);
+                                $('#nombreProducto').val(data.nombre);
+                                $('#descripcionProducto').val(data.descripcion);
+                                $('#precioProducto').val(data.precio);
+                                $('#stockProducto').val(data.stock);
+                            $ ('#imagenProducto').attr('src', '<?= base_url("/uploads"); ?>' + data.imagen); // Mostrar la imagen actual
+                            } else {
+                                console.error(data.error);
+                            }
+                        }
+                    });
                 });
 
-                // Capturar el evento del botón "Guardar"
-                $('#btnGuardar').on('click', function() {
-                  var formData = $('#formEditarProducto').serialize(); // Serializar los datos del formulario
 
-                  $.ajax({
+
+
+                // Capturar el evento del botón "Guardar"
+                $('#btnGuardarProducto').on('click', function() {
+                var formData = $('#formEditarProducto').serialize(); // Serializar los datos del formulario
+
+                $.ajax({
                     url: '<?= site_url("productos/modificarbd"); ?>', // URL del controlador para modificar los datos
                     type: 'POST',
                     data: formData,
                     success: function(response) {
-                      alert('Producto actualizado correctamente.');
-                      $('#modalEditarProducto').modal('hide'); // Cerrar el modal
-                      location.reload(); // Recargar la página para reflejar los cambios
+                    alert('Producto actualizado correctamente.');
+                    $('#modalEditarProducto').modal('hide'); // Cerrar el modal
+                    location.reload(); // Recargar la página para reflejar los cambios
                     },
                     error: function() {
-                      alert('Error al actualizar el producto.');
+                    alert('Error al actualizar el producto.');
                     }
-                  });
                 });
-              });
+                });
+            });
             </script>
 
           </div>
@@ -185,6 +215,45 @@
       </div>
     </section>
   </div>
+  <div class="modal fade" id="modalAgregarProducto" tabindex="-1" aria-labelledby="modalAgregarProductoLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="modalAgregarProductoLabel">Añadir Producto</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form action="<?= base_url('index.php/productos/agregar'); ?>" method="POST" enctype="multipart/form-data">
+                  <div class="form-group">
+                    <label for="imagenProducto">Imagen del Producto:</label>
+                    <input type="file" class="form-control-file" id="imagenProducto" name="imagenProducto" accept="image/*">
+                  </div>
+                  <div class="form-group">
+                    <label for="nombreProducto">Nombre del Producto:</label>
+                    <input type="text" class="form-control" id="nombreProducto" name="nombreProducto" placeholder="Ingrese el nombre" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="descripcionProducto">Descripción:</label>
+                    <input type="text" class="form-control" id="descripcionProducto" name="descripcionProducto" placeholder="Ingrese la descripción">
+                  </div>
+                  <div class="form-group">
+                    <label for="precioProducto">Precio:</label>
+                    <input type="number" step="0.01" class="form-control" id="precioProducto" name="precioProducto" placeholder="Ingrese el precio" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="stockProducto">Stock:</label>
+                    <input type="number" class="form-control" id="stockProducto" name="stockProducto" placeholder="Ingrese el stock disponible" required>
+                  </div>
+                  <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-plus"></i> Agregar
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
   
   <!-- Scripts -->
   <script src="../../plugins/jquery/jquery.min.js"></script>

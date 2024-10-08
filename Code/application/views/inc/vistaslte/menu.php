@@ -44,44 +44,7 @@
             </p>
         </a>
         </li>
-
-        <li class="nav-item">
-        <a href="<?= site_url('productos/catalogo'); ?>" class="nav-link <?= ($this->uri->segment(2) == 'catalogo') ? 'active' : ''; ?>">
-            <i class="nav-icon fas fa-book"></i>
-            <p>
-              Catálogo
-            </p>
-        </a>
-        </li>
-        <li class="nav-item">
-        <a href="<?= site_url('productos/gestion'); ?>" class="nav-link <?= ($this->uri->segment(2) == 'gestion') ? 'active' : ''; ?>">
-            <i class="nav-icon fas fa-book"></i>
-            <p>
-              Gestion
-            </p>
-        </a>
-        </li>
         <?php if($this->session->userdata('rol')==='admin'): ?>
-        <li class="nav-item">
-        <a href="<?= site_url('productos/anadir'); ?>" class="nav-link <?= ($this->uri->segment(2) == 'anadir') ? 'active' : ''; ?>">
-            <i class="fas  fa-plus"></i>
-            <p>
-                Gestion de productos
-            </p>
-        </a>
-        </li>
-
-        <li class="nav-item">
-        <a href="<?= site_url('productos/Gventas'); ?>" class="nav-link <?= ($this->uri->segment(2) == 'Gventas') ? 'active' : ''; ?>">
-            <i class="fas  fa-chart-line"></i>
-            <p>
-              Ventas
-            </p>
-        </a>
-        </li>
-
-       
-        
         <li class="nav-item">
         <a href="<?= site_url('usuarios/clientes'); ?>" class="nav-link <?= ($this->uri->segment(2) == 'clientes') ? 'active' : ''; ?>">
             <i class="nav-icon fas fa-users"></i>
@@ -90,6 +53,36 @@
             </p>
         </a>
         </li>
+        <?php endif; ?>
+        <li class="nav-item">
+        <a href="<?= site_url('productos/catalogo'); ?>" class="nav-link <?= ($this->uri->segment(2) == 'catalogo') ? 'active' : ''; ?>">
+            <i class="nav-icon fas fa-book"></i>
+            <p>
+              Catálogo
+            </p>
+        </a>
+        </li>
+        <?php if($this->session->userdata('rol')==='admin'): ?>
+        <li class="nav-item">
+        <a href="<?= site_url('productos/gestion'); ?>" class="nav-link <?= ($this->uri->segment(2) == 'gestion') ? 'active' : ''; ?>">
+        <i class="nav-icon fas fa-boxes"></i>
+            <p>
+              Gestion
+            </p>
+        </a>
+        </li>
+        
+       
+
+        <li class="nav-item">
+        <a href="<?= site_url('productos/Gventas'); ?>" class="nav-link <?= ($this->uri->segment(2) == 'Gventas') ? 'active' : ''; ?>">
+        <i class="nav-icon fas fa-receipt"></i>
+            <p>
+              Ventas
+            </p>
+        </a>
+        </li>
+       
         <?php endif; ?>
 
 
@@ -142,7 +135,7 @@
             </ul>
           </li>
           
-          <li class="nav-header">EXAMPLES</li>
+          <li class="nav-header">OTROS</li>
           <li class="nav-item">
             <a href="calendar.html" class="nav-link">
               <i class="nav-icon far fa-calendar-alt"></i>
